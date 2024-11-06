@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+
+    <select id="getUser" resultType="com.soapServiceWithJava8.entity.UserEntity">
+        select *
+        from soap_user
+        where 1 = 1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </select>
+
+    <insert id="insertUser" parameterType="com.soapServiceWithJava8.entity.UserEntity">
+        INSERT INTO soap_user (id,username,password,roles_id)
+        VALUES (#{id},#{username},#{password},#{roles_id})
+    </insert>
+
+    <update id="updateUser" parameterType="com.soapServiceWithJava8.entity.UserEntity">
+        UPDATE soap_user
+        SET id = #{id},
+            username = #{username},
+            password = #{password},
+            roles_id = #{roles_id}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="com.soapServiceWithJava8.entity.UserEntity">
+        DELETE
+        FROM soap_user
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
+
